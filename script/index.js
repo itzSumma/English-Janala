@@ -1,3 +1,10 @@
+//LEVEL-4(Synonyms)
+const createElements=(arr=[])=>{
+    const htmlElements = arr.map((elem)=> `<span class="btn">${elem}</span>`);
+   return (htmlElements.join(" "));
+}
+
+
 
 //START FROM HERE------>
 const loadLessons = () => {
@@ -39,7 +46,34 @@ clickBtn.classList.add("active") //add active class
    };
    const displayWordDetails = (word)=>{
 console.log(word);
-   }
+const detailsBox =document.getElementById("details-container");
+detailsBox.innerHTML=`
+
+                <div >
+                    <h2 class="text-2xl font-semibold">${word.word}( <i class="fa-solid fa-microphone-lines"></i> :${word.pronunciation})</h2>
+                </div>
+
+                <div>
+                    <h2 class=" font-semibold">Meaning</h2>
+                    <p class="font-bangla">${word.meaning}</p>
+                </div>
+
+                <div>
+                    <h2 class=" font-semibold">Example</h2>
+                    <p>${word.sentence}</p>
+                </div>
+                <div>
+                    <h2 class=" font-semibold">Synonyms</h2>
+                   <div>
+                   ${createElements(word.synonyms || [])}
+                </div>
+            </div>
+         
+
+
+`;
+document.getElementById("word_modal").showModal();
+   };
 
 
    //First step from here

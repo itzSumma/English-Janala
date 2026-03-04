@@ -120,31 +120,32 @@
            grid-cols-1 
            md:grid-cols-2 
            lg:grid-cols-3 gap-5">
-       
-           <div class="text-center col-span-full p-5 space-y-3 font-bangla">
-            
+
+        <div class="text-center col-span-full p-5 space-y-3 font-bangla">
+
             <p class="text-sm font-sm text-gray-400">এই Lesson এ এখনো কোন Vocabulary যুক্ত করা হয়নি।</p>
             <h2 class="text-2xl font-semibold">নেক্সট Lesson এ যান</h2>
-           </div>
-          
-           </section>
-            
-           <!-- Open the modal using ID.showModal() method -->
-<!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
-<dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
-  <div class="modal-box">
-    <h3 class="text-lg font-bold">Hello!</h3>
-    <p class="py-4">Press ESC key or click the button below to close</p>
-    <div class="modal-action">
-      <form method="dialog">
-        <!-- if there is a button in form, it will close the modal -->
-        <button class="btn">Close</button>
-      </form>
-    </div>
-  </div>
-</dialog>
-      
-  
+        </div>
+    </section>
+
+    <!-- Open the modal using ID.showModal() method -->
+    <!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
+    <dialog id="word_modal" class="modal modal-bottom sm:modal-middle">
+        <div class="modal-box">
+            <div id="details-container" class="">
+               
+           
+        </div>
+        <div class="modal-action">
+            <form method="dialog">
+                <!-- if there is a button in form, it will close the modal -->
+                <button class="btn">Close</button>
+            </form>
+        </div>
+       
+    </dialog>
+
+
 
     <!-- JS File -->
     <script src="script/index.js"></script>
