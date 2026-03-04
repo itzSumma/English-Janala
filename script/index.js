@@ -17,18 +17,42 @@ const loadLevelWord = (id) => {
 const displayWord =(words)=>{
  //get the container & make empty
  const wordContainer =document.getElementById("word-container");
-//  wordContainer.innerHTML="";
+ wordContainer.innerHTML="";
+ //Last one give alert
+if(words.length==0){
+ wordContainer.innerHTML=`
+ <div class="text-center col-span-full p-5 space-y-3 font-bangla">
+            
+     <div class=" flex justify-center">
+            <img src="./assets/alert-error.png" alt="">
+            </div>
+            <p class="text-sm font-sm text-gray-400">আপনি এখনো কোন Lesson Select করেননি </p>
+            <h2 class="text-2xl font-semibold">একটি Lesson Select করুন।</h2>
+           </div>
+ `;
+}
+
  // get into every word
  words.forEach (word=>{
      //create new element
 // console.log(word)
 const card =document.createElement("div")
 card.innerHTML=`
-
+ <div class="bg-white rounded-lg p-8 py-10 px-5  text-center shadow-lg space-y-4">
+            <h2 class="text-2xl font-bold">
+                ${word.word}
+            </h2>
+            <p class="font-semibold">Meaning /Pronunciation</p>
+<div class="font-bangla font-medium text-2xl text-gray-600">"${word.meaning} /${word.pronunciation}"</div>
+<div class="flex justify-between items-center">
+    <button class="btn btn-outline bg-[#1a91ff20] hover:bg-[#1a91ff60]  active:bg-[#1a91ff60]"><i class="fa-solid fa-circle-info"></i></button>
+    <button class="btn btn-outline bg-[#1a91ff20] hover:bg-[#1a91ff60]  active:bg-[#1a91ff60]"><i class="fa-solid fa-volume-high"></i></button>
+</div>
+        </div>
 `;
 wordContainer.append(card)
  });
-}
+}  //END
 
 //LEVEL-1 (start)
 const displayLoad = (lessons) => {
