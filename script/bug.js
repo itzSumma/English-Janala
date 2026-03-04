@@ -30,20 +30,20 @@ const removeActive = () => {
 // Step-3
 const loadLevelWord = (id) => {
   manageSpinner(true);
-  const url =  https://openapi.programming-hero.com/api/level/${id};//dynamic url with id.
+  const url =  `https://openapi.programming-hero.com/api/level/${id}`;//dynamic url with id.
   // console.log(url) 
   fetch(url)
     .then(res => res.json())
     .then(data => {
       removeActive(); // remove all active class 
-      const clickBtn = document.getElementById(lesson-btn-${id});
+      const clickBtn = document.getElementById(`lesson-btn-${id}`);
       clickBtn.classList.add('active') // set active class
       displayLevelWord(data.data);
     });
 };
 
 const loadWordDetail = async (id) => {
-  const url = https://openapi.programming-hero.com/api/word/${id};
+  const url = `https://openapi.programming-hero.com/api/word/${id}`;
   const res = await fetch(url);
   const details = await res.json();
   displayWordDetails(details.data)
