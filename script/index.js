@@ -1,10 +1,9 @@
 //LEVEL-4(Synonyms)
-const createElements=(arr=[])=>{
-    const htmlElements = arr.map((elem)=> `<span class="btn">${elem}</span>`);
-   return (htmlElements.join(" "));
-}
-
-
+const createElements = (arr) => {
+  const htmlElements = arr.map((elem) => `<span class="btn">${elem}</span>`);
+  console.log(htmlElements);
+  return htmlElements.join(" ");
+};
 
 //START FROM HERE------>
 const loadLessons = () => {
@@ -14,11 +13,11 @@ const loadLessons = () => {
 };
 
 //LEVEL-3
-const removeActive=()=>{
-const lessonButtons =document.querySelectorAll(".lesson-btn");
-  lessonButtons.forEach(btn => btn.classList.remove("active"));
-console.log(lessonButtons);
-}
+const removeActive = () => {
+  const lessonButtons = document.querySelectorAll(".lesson-btn");
+  lessonButtons.forEach((btn) => btn.classList.remove("active"));
+  console.log(lessonButtons);
+};
 
 //LEVEL-2 (START)
 
@@ -28,26 +27,27 @@ const loadLevelWord = (id) => {
   const url = `https://openapi.programming-hero.com/api/level/${id}`;
   fetch(url)
     .then((res) => res.json())
-    .then((data) =>{
-const clickBtn=document.getElementById(`lesson-btn-${id}`)
-// console.log(clickBtn);
-clickBtn.classList.add("active") //add active class
-       displayWord(data.data);
+    .then((data) => {
+      const clickBtn = document.getElementById(`lesson-btn-${id}`);
+      // console.log(clickBtn);
+      clickBtn.classList.add("active"); //add active class
+      displayWord(data.data);
     });
 };
 
 //LEVEL-4(START)
-   const loadWordDetail=async(id)=>{
-    const url = `https://openapi.programming-hero.com/api/word/${id}`;
-    console.log(url);
-    const res=await fetch(url);
-    const details = await res.json();
-    displayWordDetails(details.data);
-   };
-   const displayWordDetails = (word)=>{
-console.log(word);
-const detailsBox =document.getElementById("details-container");
-detailsBox.innerHTML=`
+const loadWordDetail = async (id) => {
+  const url = `https://openapi.programming-hero.com/api/word/${id}`;
+  console.log(url);
+  const res = await fetch(url);
+  const details = await res.json();
+  displayWordDetails(details.data);
+};
+const displayWordDetails = (word) => {
+  console.log(word);
+  // console.log(word.synonyms[0])
+  const detailsBox = document.getElementById("details-container");
+  detailsBox.innerHTML = `
 
                 <div >
                     <h2 class="text-2xl font-semibold">${word.word}( <i class="fa-solid fa-microphone-lines"></i> :${word.pronunciation})</h2>
@@ -65,26 +65,27 @@ detailsBox.innerHTML=`
                 <div>
                     <h2 class=" font-semibold">Synonyms</h2>
                    <div>
-                   ${createElements(word.synonyms || [])}
+                   ${createElements(word.synonyms)}
+                   
+              
                 </div>
             </div>
          
 
 
 `;
-document.getElementById("word_modal").showModal();
-   };
+  document.getElementById("word_modal").showModal();
+};
 
+//First step from here
 
-   //First step from here
-
-const displayWord =(words)=>{
- //get the container & make empty
- const wordContainer =document.getElementById("word-container");
- wordContainer.innerHTML="";
- //Last one give alert
-if(words.length==0){
- wordContainer.innerHTML=`
+const displayWord = (words) => {
+  //get the container & make empty
+  const wordContainer = document.getElementById("word-container");
+  wordContainer.innerHTML = "";
+  //Last one give alert
+  if (words.length == 0) {
+    wordContainer.innerHTML = `
  <div class="text-center col-span-full p-5 space-y-3 font-bangla">
           
      <div class=" flex justify-center">
@@ -94,17 +95,17 @@ if(words.length==0){
             <h2 class="text-2xl font-semibold">একটি Lesson Select করুন।</h2>
            </div>
  `;
-}
+  }
 
- // get into every word
- words.forEach (word=>{
-     //create new element
-// console.log(word)
-const card =document.createElement("div")
-card.innerHTML=`
+  // get into every word
+  words.forEach((word) => {
+    //create new element
+    // console.log(word)
+    const card = document.createElement("div");
+    card.innerHTML = `
  <div class="bg-white rounded-lg p-8 py-10 px-5  text-center shadow-lg space-y-4">
             <h2 class="text-2xl font-bold">
-                ${word.word ? word.word : "শব্দ পাওয়া যায়নি" }
+                ${word.word ? word.word : "শব্দ পাওয়া যায়নি"}
             </h2>
             <p class="font-semibold">Meaning /Pronunciation</p>
 <div class="font-bangla font-medium text-2xl text-gray-600">"${word.meaning ? word.meaning : "অর্থ পাওয়া যায়নি"} /${word.pronunciation ? word.pronounciation : "Pronunciation পাওয়া যায়নি "}"</div>
@@ -114,9 +115,9 @@ card.innerHTML=`
 </div>
         </div>
 `;
-wordContainer.append(card)
- });
-}  //END
+    wordContainer.append(card);
+  });
+}; //END
 
 //LEVEL-1 (start)
 const displayLoad = (lessons) => {
