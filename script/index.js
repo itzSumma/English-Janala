@@ -4,7 +4,12 @@ const createElements = (arr) => {
   console.log(htmlElements);
   return htmlElements.join(" ");
 };
-
+//LEVEL-6
+function pronounceWord(word) {
+  const utterance = new SpeechSynthesisUtterance(word);
+  utterance.lang = "en-EN"; // English
+  window.speechSynthesis.speak(utterance);
+}
 //LEVEL-5(loading)
 const manageSpinner = (status) => {
   if (status === true) {
@@ -122,8 +127,8 @@ const displayWord = (words) => {
             <p class="font-semibold">Meaning /Pronunciation</p>
 <div class="font-bangla font-medium text-2xl text-gray-600">"${word.meaning ? word.meaning : "অর্থ পাওয়া যায়নি"} /${word.pronunciation ? word.pronounciation : "Pronunciation পাওয়া যায়নি "}"</div>
 <div class="flex justify-between items-center">
-    <button onclick="loadWordDetail(${word.id})" class="btn btn-outline bg-[#1a91ff20] hover:bg-[#1a91ff60]  active:bg-[#1a91ff60]"><i class="fa-solid fa-circle-info"></i></button>
-    <button class="btn btn-outline bg-[#1a91ff20] hover:bg-[#1a91ff60]  active:bg-[#1a91ff60]"><i class="fa-solid fa-volume-high"></i></button>
+    <button onclick="loadWordDetail('${word.id}')" class="btn btn-outline bg-[#1a91ff20] hover:bg-[#1a91ff60]  active:bg-[#1a91ff60]"><i class="fa-solid fa-circle-info"></i></button>
+    <button onclick="pronounceWord('${word.word}')" class="btn btn-outline bg-[#1a91ff20] hover:bg-[#1a91ff60]  active:bg-[#1a91ff60]"><i class="fa-solid fa-volume-high"></i></button>
 </div>
         </div>
 `;
@@ -153,7 +158,7 @@ const displayLoad = (lessons) => {
 }; //END
 
 loadLessons();
-
+ //level-5(end)
 document.getElementById("btn-search").addEventListener("click", ()=>{ removeActive()
   const inputBar=document.getElementById("input-search");
   const searchValue =inputBar.value.trim().toLowerCase();
