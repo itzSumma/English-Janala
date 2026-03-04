@@ -29,6 +29,19 @@ clickBtn.classList.add("active") //add active class
     });
 };
 
+//LEVEL-4(START)
+   const loadWordDetail=async(id)=>{
+    const url = `https://openapi.programming-hero.com/api/word/${id}`;
+    console.log(url);
+    const res=await fetch(url);
+    const details = await res.json();
+    displayWordDetails(details.data);
+   };
+   const displayWordDetails = (word)=>{
+console.log(word);
+   }
+
+
    //First step from here
 
 const displayWord =(words)=>{
@@ -62,7 +75,7 @@ card.innerHTML=`
             <p class="font-semibold">Meaning /Pronunciation</p>
 <div class="font-bangla font-medium text-2xl text-gray-600">"${word.meaning ? word.meaning : "অর্থ পাওয়া যায়নি"} /${word.pronunciation ? word.pronounciation : "Pronunciation পাওয়া যায়নি "}"</div>
 <div class="flex justify-between items-center">
-    <button onclick="my_modal_5.showModal()" class="btn btn-outline bg-[#1a91ff20] hover:bg-[#1a91ff60]  active:bg-[#1a91ff60]"><i class="fa-solid fa-circle-info"></i></button>
+    <button onclick="loadWordDetail(${word.id})" class="btn btn-outline bg-[#1a91ff20] hover:bg-[#1a91ff60]  active:bg-[#1a91ff60]"><i class="fa-solid fa-circle-info"></i></button>
     <button class="btn btn-outline bg-[#1a91ff20] hover:bg-[#1a91ff60]  active:bg-[#1a91ff60]"><i class="fa-solid fa-volume-high"></i></button>
 </div>
         </div>
